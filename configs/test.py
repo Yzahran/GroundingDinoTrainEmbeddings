@@ -1,6 +1,6 @@
-_base_  = '/GDDemoTokens/configs/custom_gd.py'
+_base_  = '/GroundingDinoTrainEmbeddings/configs/custom_gd.py'
 
-data_root = '/GDDemoTokens/Dataset/singleclevr_rubber/'
+data_root = '/GroundingDinoTrainEmbeddings/Dataset/singleclevr_rubber/'
 class_name =   ("red cube",
       "blue cube",
       "green cube",
