@@ -8,9 +8,9 @@ services:
     - HOME=/root
     - USER=$USER
     volumes:
-    - /home/yzahran/GDDemoTokens:/GDDemoTokens
+    - /home/yzahran/GroundingDinoTrainEmbeddings:/GroundingDinoTrainEmbeddings
     - $HOME:/root
-    - $PWD:/home/yzahran/GDDemoTokens
+    - $PWD:/home/yzahran/GroundingDinoTrainEmbeddings
     - /usr/local/certificates:/certificates
     - $HOME/.ssh/authorized_keys:/root/.ssh/authorized_keys
 
