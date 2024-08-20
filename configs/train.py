@@ -1,5 +1,5 @@
-data_root = '/GDDemoTokens/Dataset/singleclevr_rubber/'
-_base_ = '/GDDemoTokens/configs/custom_gd.py'
+data_root = '/GroundingDinoTrainEmbeddings/Dataset/singleclevr_rubber/'
+_base_ = '/GroundingDinoTrainEmbeddings/configs/custom_gd.py'
 
 
 randomness = dict(
