@@ -57,7 +57,7 @@ To make things easier, we've included a Docker setup:
 5. Access the Docker container:
     ```bash
     docker exec -it process /bin/bash
-    cd /GDDemoTokens
+    cd /GroundingDinoTrainEmbeddings
     ```
 
 ### 3. Training the Model
