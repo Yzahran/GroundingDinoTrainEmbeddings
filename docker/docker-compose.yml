@@ -1,0 +1,20 @@
+services:
+  gddemotokens:
+    runtime: nvidia
+    command: /usr/sbin/sshd -D
+    image: gddemotokens
+    shm_size: 8gb
+    environment:
+    - HOME=/root
+    - USER=$USER
+    volumes:
+    - /home/yzahran/GDDemoTokens:/GDDemoTokens
+    - $HOME:/root
+    - $PWD:/home/yzahran/GDDemoTokens
+    - /usr/local/certificates:/certificates
+    - $HOME/.ssh/authorized_keys:/root/.ssh/authorized_keys
+
+
+    ports:
+    - "11512"
+version: '2.3'
