@@ -1,4 +1,3 @@
-
 # Fine-Tuning Grounding DINO with Token Embeddings
 
 Welcome to the **GDDemoTokens** repository! This project builds on the [GROUNDING DINO](https://github.com/open-mmlab/mmdetection/blob/main/configs/grounding_dino/README.md) model from the MMDetection framework. Here, we fine-tune Grounding DINO by adjusting only the class embeddings relevant to your dataset, rather than the weights of the entire model.
@@ -12,7 +11,10 @@ To achieve this fine-tuning, we have made changes to the following files:
   This file has been modified to allow fine-tuning of only the class embeddings.
   
 - **`GroundingDinoTrainEmbeddings/mmdetection/mmdet/models/language_models/bert.py`**:  
-Adjustments in this file enable the use of `[unused*]` tokens in the BERT model, which are employed for new class embeddings. This ensures that the original embeddings of the tokens are preserved and can be reused whenever needed.
+  Adjustments in this file enable the use of `[unused*]` tokens in the BERT model, which are employed for new class embeddings. This ensures that the original embeddings of the tokens are preserved and can be reused whenever needed.
+
+- **`GroundingDinoTrainEmbeddings/mmdetection/mmdet/evaluation/metrics/nms_coco_metric.py`**:  
+  This new file has been added to support evaluation with  NMS mAP during model evaluation.
 
 ### New Configuration Files
 We've also added new configuration files to support custom fine-tuning:
@@ -22,6 +24,8 @@ We've also added new configuration files to support custom fine-tuning:
 
 - **`GroundingDinoTrainEmbeddings/configs/train.py`** and **`GroundingDinoTrainEmbeddings/configs/test.py`**:  
   These scripts are provided for training and testing the model, respectively. Before running them, ensure that all paths are correctly set according to your specific dataset, which should be annotated in COCO format.
+
+  > **Note**: To enable evaluation with NMS mAP, uncomment the relevant line in both `train.py` and `test.py`.
 
 ## Getting Started
 
@@ -56,9 +60,10 @@ To make things easier, we've included a Docker setup:
 
 5. Access the Docker container:
     ```bash
-    docker exec -it process /bin/bash
+    docker exec -it <process_name> /bin/bash
     cd /GroundingDinoTrainEmbeddings
     ```
+>**Note**: Replace `<process_name>` with the actual process name or ID obtained from the `docker ps aux` command.
 
 ### 3. Training the Model
 To train the model on a single GPU and ensure reproducibility by setting the random seed to 42, run:
@@ -67,12 +72,16 @@ To train the model on a single GPU and ensure reproducibility by setting the ran
 bash mmdetection/tools/dist_train.sh configs/train.py 1 --cfg-options randomness.seed=42 randomness.deterministic=True
 ```
 
+>  **Note**: If you want to perform validation with NMS mAP during training, make sure to uncomment the relevant line in `configs/train.py`.
+
 ### 4. Testing the Model
 To test the model using the weights obtained during training and save the predictions to a `.pkl` file, execute:
 
 ```bash
 bash mmdetection/tools/dist_test.sh configs/test.py path/to/weights 1 --out path/to/save/predictions
 ```
+
+> **Note**: If you want to evaluate the model using NMS mAP during testing, make sure to uncomment the relevant line in `configs/test.py`.
 
 ## Important
 
