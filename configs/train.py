@@ -53,7 +53,8 @@ val_dataloader = dict(
 test_dataloader = val_dataloader
 
 val_evaluator = dict(ann_file=data_root + 'annotations/10shot18comp.json')
-
+#uncomment this if you want to evaluate with NMS mAP
+#val_evaluator = dict(ann_file=data_root + 'annotations/10shot18comp.json',type='NMSCocoMetric')
 test_evaluator = val_evaluator
 
 max_epoch = 20
