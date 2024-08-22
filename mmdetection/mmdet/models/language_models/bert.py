@@ -133,12 +133,10 @@ class BertModel(BaseModel):
                               num_layers_of_embedded=num_layers_of_embedded,
                               use_checkpoint=use_checkpoint))]))
 
-        # Freeze all parameters 
-        special_tokens_tokenizer = [key for key in replacement_embeddings]
-        self.incr_tokens = [f"[unused{i+len(special_tokens_tokenizer)}]"for i in range(len(self.increment_embeddings)*self.prompt_length)]
-        special_unused_tokens = [f"[unused{i}]" for i in range(90)]
+        special_unused_tokens = [f"[unused{i}]" for i in range(special_tokens_tokenizer)]
 
         self.tokenizer.add_special_tokens({ "additional_special_tokens": special_unused_tokens })
+        # Freeze all parameters 
         self.freeze_all_parameters()
         unused_specialtokens = []
         if self.train_mode:
@@ -178,14 +176,13 @@ class BertModel(BaseModel):
                 mask[new_token_ids] = True
                 param.requires_grad_(True)  # Enable gradients for embedding weights
                 param.grad = None  # Clear any existing gradients
-                # Use a lambda that ensures everything is on the correct device                param.register_hook(lambda grad: torch.where(mask.unsqueeze(1).to(grad.device), grad, torch.zeros_like(grad)))
+                # Use a lambda that ensures everything is on the correct device                
+                param.register_hook(lambda grad: torch.where(mask.unsqueeze(1).to(grad.device), grad, torch.zeros_like(grad)))
 
 
     def forward(self, captions: Sequence[str], **kwargs) -> dict:
         """Forward function."""
         device = next(self.language_backbone.parameters()).device
-        replace_tokens= ['[unused0]', '[unused1]', '[unused2]', '[unused3]', '[unused4]', '[unused5]', '[unused6]', '[unused7]', '[unused8]']
-
         if  self.first_time and self.train_mode:
             self.initialize_replacement_embeddings_with_existing()
             print("initialized new embeddings with original embeddings")

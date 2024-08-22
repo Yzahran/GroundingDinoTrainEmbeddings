@@ -38,7 +38,7 @@ train_dataloader = dict(
     dataset=dict(
         data_root=data_root,
         metainfo=metainfo,
-        ann_file='annotations/10shot6comp.json',
+        ann_file='annotations/10shot18comp.json',
         data_prefix=dict(img='images/')))
 
 
@@ -47,12 +47,12 @@ val_dataloader = dict(
     dataset=dict(
         metainfo=metainfo,
         data_root=data_root,
-        ann_file='annotations/10shot6comp.json',
+        ann_file='annotations/10shot18comp.json',
         data_prefix=dict(img='images/')))
 
 test_dataloader = val_dataloader
 
-val_evaluator = dict(ann_file=data_root + 'annotations/10shot6comp.json')
+val_evaluator = dict(ann_file=data_root + 'annotations/10shot18comp.json')
 
 test_evaluator = val_evaluator
 
