@@ -36,6 +36,11 @@ First, clone this repository to your local machine:
 git clone https://github.com/Yzahran/GroundingDinoTrainEmbeddings.git
 cd GroundingDinoTrainEmbeddings
 ```
+### (Optional) Download the Dataset
+If you want to use our dataset generated using the CLEVR framework, you can download it from the following link:
+
+[Download CLEVR Dataset](https://drive.google.com/file/d/1AyUxpOMcFGdTewBFigb4rVUgBifb7MfC/view?usp=sharing)
+
 
 ### 2. Set Up the Docker Environment
 To make things easier, we've included a Docker setup:
