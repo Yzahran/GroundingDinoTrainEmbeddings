@@ -65,7 +65,7 @@ To make things easier, we've included a Docker setup:
 
 5. Access the Docker container:
     ```bash
-    docker exec -it <process_name> /bin/bash
+    docker exec -it <CONTAINER ID> /bin/bash
     cd /GroundingDinoTrainEmbeddings
     ```
 >**Note**: Replace `<process_name>` with the actual process name or ID obtained from the `docker ps aux` command.
