@@ -30,7 +30,7 @@ class_name =    (
 metainfo  =dict(classes=class_name)
 
 settings_training = dict(train=True)
-model = dict(bbox_head=dict(num_classes=len(class_name),train_settings=settings_training),
+model = dict(bbox_head=dict(num_classes=len(class_name)),
             train_settings=settings_training,
             language_model=dict(train_settings=settings_training)
 )
