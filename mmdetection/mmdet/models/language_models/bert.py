@@ -133,7 +133,7 @@ class BertModel(BaseModel):
                               num_layers_of_embedded=num_layers_of_embedded,
                               use_checkpoint=use_checkpoint))]))
         special_tokens_tokenizer = [key for key in replacement_embeddings]
-        special_unused_tokens = [f"[unused{i}]" for i in range(special_tokens_tokenizer)]
+        special_unused_tokens = [f"[unused{i}]" for i in range(len(special_tokens_tokenizer))]
 
         self.tokenizer.add_special_tokens({ "additional_special_tokens": special_unused_tokens })
         # Freeze all parameters 
