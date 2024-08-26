@@ -33,7 +33,25 @@ def replace_placeholders(text, replacements):
     for replacement, placeholder in replacements.items():
         text = text.replace(placeholder, replacement)
     return text
+def clean_label_name(name: str) -> str:
+    name = re.sub(r'\(.*\)', '', name)
+    name = re.sub(r'_', ' ', name)
+    name = re.sub(r'  ', ' ', name)
+    return name
 
+
+def chunks(lst: list, n: int) -> list:
+    """Yield successive n-sized chunks from lst."""
+    all_ = []
+    for i in range(0, len(lst), n):
+        data_index = lst[i:i + n]
+        all_.append(data_index)
+    counter = 0
+    for i in all_:
+        counter += len(i)
+    assert (counter == len(lst))
+
+    return all_
 @MODELS.register_module()
 class GroundingDINO(DINO):
     """Implementation of `Grounding DINO: Marrying DINO with Grounded Pre-
