@@ -29,6 +29,11 @@ import torch
 import numpy as np
 from torch.autograd import Variable, grad
 
+def replace_placeholders(text, replacements):
+    for replacement, placeholder in replacements.items():
+        text = text.replace(placeholder, replacement)
+    return text
+
 @MODELS.register_module()
 class GroundingDINO(DINO):
     """Implementation of `Grounding DINO: Marrying DINO with Grounded Pre-
