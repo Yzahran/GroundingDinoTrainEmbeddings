@@ -83,7 +83,7 @@ bash mmdetection/tools/dist_train.sh configs/train.py 1 --cfg-options randomness
 To test the model using the weights obtained during training and save the predictions to a `.pkl` file, execute:
 
 ```bash
-bash mmdetection/tools/dist_test.sh configs/test.py path/to/weights 1 --out path/to/save/predictions
+bash mmdetection/tools/dist_test.sh configs/test.py path/to/weights 1 --out path/to/save/predictions.pkl
 ```
 
 > **Note**: If you want to evaluate the model using NMS mAP during testing, make sure to uncomment the relevant line in `configs/test.py`.
