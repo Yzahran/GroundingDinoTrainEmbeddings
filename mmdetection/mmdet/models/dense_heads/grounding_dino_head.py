@@ -104,11 +104,9 @@ class GroundingDINOHead(DINOHead):
           keys like ``max_text_len``. Defaults to dict(max_text_len=256).
     """
 
-    def __init__(self,label_smoothening,train_settings,contrastive_cfg=dict(max_text_len=256), **kwargs):
+    def __init__(self,contrastive_cfg=dict(max_text_len=256), **kwargs):
         self.contrastive_cfg = contrastive_cfg
         self.max_text_len = contrastive_cfg.get('max_text_len', 256)
-        self.train_settings = train_settings
-
         super().__init__(**kwargs)
 
     def _init_layers(self) -> None:
