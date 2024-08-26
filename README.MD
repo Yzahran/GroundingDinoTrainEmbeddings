@@ -60,7 +60,7 @@ To make things easier, we've included a Docker setup:
 
 4. To check the running Docker processes, use:
     ```bash
-    docker ps aux
+    docker ps
     ```
 
 5. Access the Docker container:
