@@ -68,7 +68,7 @@ To make things easier, we've included a Docker setup:
     docker exec -it <CONTAINER ID> /bin/bash
     cd /GroundingDinoTrainEmbeddings
     ```
->**Note**: Replace `<process_name>` with the actual process name or ID obtained from the `docker ps aux` command.
+>**Note**: Replace `<CONTAINER ID>` with the actual CONTAINER ID obtained from the `docker ps aux` command.
 
 ### 3. Training the Model
 To train the model on a single GPU and ensure reproducibility by setting the random seed to 42, run:
